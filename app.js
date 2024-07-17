@@ -1,7 +1,9 @@
 const cookieParser = require("cookie-parser");
 const express = require("express");
-require("./configs/db.connection");
-
+const flash = require("express-flash")
+const session = require("express-session");
+require("dotenv").config();
+require("./config/db.connection");
 
 
 const app = express();
@@ -17,7 +19,12 @@ const productRoute = require("./routes/productRoute");
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended:true}));
-
+app.use(session({
+        resave:false,
+        saveUninitialized:false,
+        secret:process.env.SESSION_SECRET
+}))
+app.use(flash())
 
 app.use("/api/v1/user",userRoute);
 app.use("/api/v1/product",productRoute);
