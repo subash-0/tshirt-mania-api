@@ -1,5 +1,6 @@
 const productModel = require("../models/product.model");
 const ownerModel = require("../models/owner.model");
+const userModel = require("../models/user.model");
 const createProduct = async (req,res)=>{
         let {name,price,discount} = req.body;
         let image = req.file.filename;
@@ -78,4 +79,27 @@ const deleteProduct = async(req,res)=>{
     }
 }
 
-module.exports = {createProduct,showProduct,deleteProduct,updateProduct};
+const addToCart = async (req,res)=>{
+    let id = req.user.id;
+    try {
+        let user = await userModel.findOne({_id:id});
+        user.cart.push(req.params.id);
+        await user.save();
+        res.send(user)
+    } catch (error) {
+        
+    }
+
+
+}
+
+const showCart = async (req,res)=>{
+    try {
+        let user =await userModel.findOne({_id:req.user.id}).populate("cart");
+        res.status(200).send(user.cart);
+    } catch (error) {
+        res.status(409).send(error.message);
+        
+    }
+}
+module.exports = {createProduct,showProduct,deleteProduct,updateProduct,addToCart,showCart};
