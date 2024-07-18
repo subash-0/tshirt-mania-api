@@ -5,7 +5,7 @@ const {registerUser, userLogin, userLogOut} = require("../controllers/user.contr
 const {isLoggedIn} = require("../utils/loggedInHandler")
 
 route.post("/register",registerUser);
-route.post("/login",isLoggedIn,userLogin);
+route.post("/login",userLogin);
 route.get("/logout",userLogOut)
 
 

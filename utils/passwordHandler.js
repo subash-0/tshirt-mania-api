@@ -9,7 +9,7 @@ const hashPassword = async (password)=>{
 
 const comparePassword = async (password,hash) =>{
     let result = await bcrypt.compare(password,hash);
-   return result
+    return result;
 
 }
 

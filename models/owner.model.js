@@ -17,10 +17,10 @@ const userSchema = mongoose.Schema({
     },
     contact: Number,
     picture:String,
-    products : {
-        type: Array,
-        default :[],
-    },
+    products : [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'product' }
+    ],
     
 
 });
