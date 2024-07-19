@@ -22,6 +22,7 @@ const userSchema = mongoose.Schema({
     orders : {
         type: Array,
         default :[],
+        ref:'order'
     },
 
     contact: Number,

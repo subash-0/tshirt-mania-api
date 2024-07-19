@@ -11,7 +11,7 @@ const app = express();
 const userRoute = require("./routes/userRoute");
 const ownerRoute = require("./routes/ownerRoute");
 const productRoute = require("./routes/productRoute");
-
+const orderRoute = require("./routes/orderRoute");
 
 
 app.set("view engine","ejs");
@@ -32,6 +32,7 @@ app.get("/",(req,res)=>{
 app.use("/api/v1/user",userRoute);
 app.use("/api/v1/product",productRoute);
 app.use("/api/v1/owner",ownerRoute);
+app.user("/api/v1/order",orderRoute);
 
 
 
