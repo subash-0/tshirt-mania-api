@@ -32,7 +32,7 @@ app.get("/",(req,res)=>{
 app.use("/api/v1/user",userRoute);
 app.use("/api/v1/product",productRoute);
 app.use("/api/v1/owner",ownerRoute);
-app.user("/api/v1/order",orderRoute);
+app.use("/api/v1/order",orderRoute);
 
 
 

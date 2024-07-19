@@ -41,6 +41,17 @@ const userLogin = async (req,res)=>{
      
     }
 }
+const userProfile = async (req,res)=>{
+    try {
+        let user =await userModal.findOne({_id:req.user.id}).populate("orders").populate("cart");
+        if(!user) return res.status(404).send("User not found");
+        res.send(user)
+    } catch (error) {
+
+        res.status(409).send(error.message)
+        
+    }
+}
 
 const userLogOut = async (req,res)=>{
     res.cookie("token","");
@@ -48,4 +59,5 @@ const userLogOut = async (req,res)=>{
 }
 
 
-module.exports = {registerUser,userLogin,userLogOut};
+
+module.exports = {registerUser,userLogin,userProfile,userLogOut};
