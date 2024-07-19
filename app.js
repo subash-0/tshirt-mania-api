@@ -14,8 +14,7 @@ const productRoute = require("./routes/productRoute");
 const orderRoute = require("./routes/orderRoute");
 
 
-app.set("view engine","ejs");
-app.set("views",path.resolve("./views"))
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended:true}));
